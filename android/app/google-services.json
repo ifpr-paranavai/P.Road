@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "402803407501",
+    "project_id": "p-road",
+    "storage_bucket": "p-road.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402803407501:android:c252c503a4069c8ac380c4",
+        "android_client_info": {
+          "package_name": "com.rafael.p_road"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402803407501-5s20temejad62llt87nvaru4910viu7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcWs3KW-M0wUKpaXQMd2hfpK1F7M8FUFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402803407501-5s20temejad62llt87nvaru4910viu7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
