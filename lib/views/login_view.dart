@@ -5,11 +5,18 @@ import 'package:p_road/views/create_view.dart';
 import 'package:p_road/views/mainpage_view.dart';
 import 'package:p_road/widgets/constants.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  late String login;
+  late String password;
+
+  bool isHidden = true;
 
   @override
   Widget build(BuildContext context) {
@@ -22,20 +29,22 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-              child: Card(
-                color: cardColor,
-                child: ListTile(
-                  leading: const Icon(
-                    Icons.email,
-                  ),
-                  title: TextFormField(
-                    controller: emailController,
-                    textInputAction: TextInputAction.next,
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText: 'Informe seu E-Mail',
-                    ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 16,
+              ),
+              child: ListTile(
+                leading: const Icon(
+                  Icons.email,
+                ),
+                title: TextField(
+                  onChanged: (value) => login = value,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  decoration: const InputDecoration(
+                    label: Text('E-mail'),
+                    border: UnderlineInputBorder(),
+                    hintText: 'Informe seu E-Mail',
                   ),
                 ),
               ),
@@ -43,19 +52,28 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 8,
+
               ),
-              child: Card(
-                color: cardColor,
-                child: ListTile(
-                  leading: const Icon(
-                    Icons.lock,
-                  ),
-                  title: TextFormField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText: 'Informe sua Senha',
+              child: ListTile(
+                leading: const Icon(
+                  Icons.lock,
+                ),
+                title: TextField(
+                  onChanged: (value) => password = value,
+                  obscureText: isHidden,
+                  decoration: InputDecoration(
+                    label: const Text('Senha'),
+                    border: const UnderlineInputBorder(),
+                    hintText: 'Informe sua Senha',
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.remove_red_eye),
+                      onPressed: () {
+                        setState(
+                          () {
+                            isHidden = !isHidden;
+                          },
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -75,8 +93,8 @@ class LoginScreen extends StatelessWidget {
               onPressed: () async {
                 await FirebaseAuth.instance
                     .signInWithEmailAndPassword(
-                  email: emailController.text.trim(),
-                  password: passwordController.text.trim(),
+                  email: login,
+                  password: password,
                 )
                     .catchError((exe) {
                   showDialog(

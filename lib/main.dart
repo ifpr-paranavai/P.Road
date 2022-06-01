@@ -19,6 +19,8 @@ class MyApp extends StatelessWidget {
       title: 'P.Road',
       theme: ThemeData.dark().copyWith(
         primaryColor: mainColor,
+        primaryColorDark: highlightColor,
+
         scaffoldBackgroundColor: mainColor,
         appBarTheme: const AppBarTheme(color: mainColor),
       ),

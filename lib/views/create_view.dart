@@ -2,11 +2,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:p_road/widgets/constants.dart';
 
-class create_view extends StatelessWidget {
+class create_view extends StatefulWidget {
   create_view({Key? key}) : super(key: key);
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  @override
+  State<create_view> createState() => _create_viewState();
+}
+
+class _create_viewState extends State<create_view> {
+  late String login;
+
+  late String password;
+
+  bool isHidden = true;
 
   @override
   Widget build(BuildContext context) {
@@ -20,20 +28,15 @@ class create_view extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-              child: Card(
-                color: cardColor,
-                child: ListTile(
-                  leading: const Icon(
-                    Icons.email,
-                  ),
-                  title: TextFormField(
-                    controller: emailController,
-                    textInputAction: TextInputAction.next,
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText: 'Informe seu E-Mail',
-                    ),
-                  ),
+              child: TextField(
+                onChanged: (value) => login = value,
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.next,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.email),
+                  label: Text('E-mail'),
+                  border: UnderlineInputBorder(),
+                  hintText: 'Informe seu E-Mail',
                 ),
               ),
             ),
@@ -41,19 +44,23 @@ class create_view extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
                 horizontal: 8,
               ),
-              child: Card(
-                color: cardColor,
-                child: ListTile(
-                  leading: const Icon(
-                    Icons.lock,
-                  ),
-                  title: TextFormField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText: 'Informe sua Senha',
-                    ),
+              child: TextField(
+                onChanged: (value) => password = value,
+                obscureText: isHidden,
+                decoration: InputDecoration(
+                  label: const Text('Senha'),
+                  border: const UnderlineInputBorder(),
+                  hintText: 'Informe sua Senha',
+                  prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.remove_red_eye),
+                    onPressed: () {
+                      setState(
+                        () {
+                          isHidden = !isHidden;
+                        },
+                      );
+                    },
                   ),
                 ),
               ),
@@ -61,9 +68,8 @@ class create_view extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                  email: emailController.text.trim(),
-                  password: passwordController.text.trim(),
-
+                  email: login,
+                  password: password,
                 );
                 Navigator.of(context).pop();
               },
