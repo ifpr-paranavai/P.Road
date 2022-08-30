@@ -26,6 +26,7 @@ class _create_viewState extends State<create_view> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextField(
@@ -57,6 +58,30 @@ class _create_viewState extends State<create_view> {
                     onPressed: () {
                       setState(
                         () {
+                          isHidden = !isHidden;
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+              ),
+              child: TextField(
+                obscureText: isHidden,
+                decoration: InputDecoration(
+                  label: const Text('Confirmar senha'),
+                  border: const UnderlineInputBorder(),
+                  hintText: 'Informe sua senha novamente',
+                  prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.remove_red_eye),
+                    onPressed: () {
+                      setState(
+                            () {
                           isHidden = !isHidden;
                         },
                       );
