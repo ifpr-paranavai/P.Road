@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:p_road/widgets/constants.dart';
+import 'package:p_road/core/utils/constants.dart';
 
 class create_view extends StatefulWidget {
   create_view({Key? key}) : super(key: key);
@@ -15,6 +15,7 @@ class _create_viewState extends State<create_view> {
   late String password;
 
   bool isHidden = true;
+  bool isHidden2 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class _create_viewState extends State<create_view> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 8,
+                horizontal: 8, vertical: 16
               ),
               child: TextField(
                 onChanged: (value) => password = value,
@@ -68,10 +69,10 @@ class _create_viewState extends State<create_view> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 8,
+                horizontal: 8,vertical: 5
               ),
               child: TextField(
-                obscureText: isHidden,
+                obscureText: isHidden2,
                 decoration: InputDecoration(
                   label: const Text('Confirmar senha'),
                   border: const UnderlineInputBorder(),
@@ -82,7 +83,7 @@ class _create_viewState extends State<create_view> {
                     onPressed: () {
                       setState(
                             () {
-                          isHidden = !isHidden;
+                          isHidden2 = !isHidden2;
                         },
                       );
                     },

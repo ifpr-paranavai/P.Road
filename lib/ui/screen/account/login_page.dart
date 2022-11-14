@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:p_road/views/create_view.dart';
-import 'package:p_road/views/mainpage_view.dart';
-import 'package:p_road/widgets/constants.dart';
+import 'package:p_road/ui/screen/account/register_page.dart';
+
+
+import 'package:p_road/core/utils/constants.dart';
+
+import '../home/home_page.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -25,8 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Login",style: TextStyle(fontSize: 30),)
-            ,
+            Text("Login",style: TextStyle(fontSize: 30),),
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 8,
@@ -107,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const Main_page(),
+                    builder: (context) => const MainPage(),
                   ),
                 );
               },
