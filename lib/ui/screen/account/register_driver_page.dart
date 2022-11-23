@@ -2,14 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:p_road/core/utils/constants.dart';
 
-class create_view extends StatefulWidget {
-  create_view({Key? key}) : super(key: key);
+class driverCreatePage extends StatefulWidget {
+  driverCreatePage({Key? key}) : super(key: key);
 
   @override
-  State<create_view> createState() => _create_viewState();
+  State<driverCreatePage> createState() => _create_viewState();
 }
 
-class _create_viewState extends State<create_view> {
+class _create_viewState extends State<driverCreatePage> {
   late String login;
 
   late String password;
@@ -21,15 +21,18 @@ class _create_viewState extends State<create_view> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Cadastro"),
+        title: const Text("Cadastro Motorista"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
+            CircleAvatar(
+                maxRadius: 50,
+                child: Icon(Icons.work,size: 50)),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
               child: TextField(
                 onChanged: (value) => login = value,
                 keyboardType: TextInputType.emailAddress,
@@ -43,8 +46,50 @@ class _create_viewState extends State<create_view> {
               ),
             ),
             Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+              child: TextField(
+                onChanged: (value) => login = value,
+                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.next,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.map),
+                  label: Text('Endereço'),
+                  border: UnderlineInputBorder(),
+                  hintText: 'Informe seu Endereço',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+              child: TextField(
+                onChanged: (value) => login = value,
+                keyboardType: TextInputType.phone,
+                textInputAction: TextInputAction.next,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.phone),
+                  label: Text('Telefone'),
+                  border: UnderlineInputBorder(),
+                  hintText: 'Informe seu Endereço',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+              child: TextField(
+                onChanged: (value) => login = value,
+                keyboardType: TextInputType.phone,
+                textInputAction: TextInputAction.next,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.document_scanner),
+                  label: Text('CNH'),
+                  border: UnderlineInputBorder(),
+                  hintText: 'Informe seu CNH',
+                ),
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 8, vertical: 16
+                  horizontal: 8, vertical: 5
               ),
               child: TextField(
                 onChanged: (value) => password = value,
@@ -58,7 +103,7 @@ class _create_viewState extends State<create_view> {
                     icon: const Icon(Icons.remove_red_eye),
                     onPressed: () {
                       setState(
-                        () {
+                            () {
                           isHidden = !isHidden;
                         },
                       );
@@ -69,7 +114,7 @@ class _create_viewState extends State<create_view> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 8,vertical: 5
+                  horizontal: 8,vertical: 5
               ),
               child: TextField(
                 obscureText: isHidden2,
@@ -91,6 +136,7 @@ class _create_viewState extends State<create_view> {
                 ),
               ),
             ),
+            SizedBox(height: 10),
             ElevatedButton(
               onPressed: () async {
                 await FirebaseAuth.instance.createUserWithEmailAndPassword(

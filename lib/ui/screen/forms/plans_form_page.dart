@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/model/entity/plans.dart';
+
 class create_plans extends StatefulWidget {
   const create_plans({Key? key}) : super(key: key);
 
@@ -7,9 +9,12 @@ class create_plans extends StatefulWidget {
   State<create_plans> createState() => _create_plansState();
 }
 
-var nome;
-var mensalidade;
-var periodo;
+Plans id = id;
+Plans nome = nome;
+Plans valor = valor;
+Plans data_inicio = data_inicio;
+Plans data_fim = data_fim;
+Plans status = status;
 
 class _create_plansState extends State<create_plans> {
   @override
@@ -24,15 +29,20 @@ class _create_plansState extends State<create_plans> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                CircleAvatar(
+                    backgroundColor: Colors.blue,
+                    maxRadius: 50,
+                    child: Icon(Icons.newspaper,size: 50,color: Colors.white,)),
+
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
-                    vertical: 16,
+                    vertical: 5,
                   ),
                   child: ListTile(
                     leading: const Icon(Icons.newspaper),
                     title: TextField(
-                      onChanged: (value) => nome = value,
+                      onChanged: (value) => nome = value as Plans,
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.next,
                       decoration: const InputDecoration(
@@ -43,19 +53,20 @@ class _create_plansState extends State<create_plans> {
                     ),
                   ),
                 ),
+
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
-                    vertical: 16,
+                    vertical: 5,
                   ),
                   child: ListTile(
-                    leading: const Icon(Icons.date_range),
+                    leading: const Icon(Icons.money),
                     title: TextField(
-                      onChanged: (value) => mensalidade = value,
+                      onChanged: (value) => valor = value as Plans,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       decoration: const InputDecoration(
-                        label: Text('Mensalidade'),
+                        label: Text('Valor'),
                         border: UnderlineInputBorder(),
                         hintText: 'Informe o valor da mensalidade',
                       ),
@@ -65,18 +76,37 @@ class _create_plansState extends State<create_plans> {
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
-                    vertical: 16,
+                    vertical: 5,
                   ),
                   child: ListTile(
-                    leading: const Icon(Icons.timelapse),
+                    leading: const Icon(Icons.calendar_month),
                     title: TextField(
-                      onChanged: (value) => periodo = value,
-                      keyboardType: TextInputType.text,
+                      onChanged: (value) => data_inicio = value as Plans,
+                      keyboardType: TextInputType.datetime,
                       textInputAction: TextInputAction.next,
                       decoration: const InputDecoration(
-                        label: Text('Periodo'),
+                        label: Text('Data Inicio'),
                         border: UnderlineInputBorder(),
-                        hintText: 'Informe o periodo do plano',
+                        hintText: 'Informe a data que se inicia o plano',
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 5,
+                  ),
+                  child: ListTile(
+                    leading: const Icon(Icons.calendar_month),
+                    title: TextField(
+                      onChanged: (value) => data_fim = value as Plans,
+                      keyboardType: TextInputType.datetime,
+                      textInputAction: TextInputAction.next,
+                      decoration: const InputDecoration(
+                        label: Text('Data fim'),
+                        border: UnderlineInputBorder(),
+                        hintText: 'Informe a data que acaba o plano',
                       ),
                     ),
                   ),

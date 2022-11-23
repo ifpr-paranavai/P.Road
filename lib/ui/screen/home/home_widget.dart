@@ -6,8 +6,13 @@ import 'package:p_road/ui/screen/forms/lines_form_page.dart';
 import 'package:p_road/ui/screen/forms/plans_form_page.dart';
 import 'package:p_road/ui/screen/forms/vehicles_form_page.dart';
 import 'package:p_road/core/utils/constants.dart';
+import 'package:p_road/ui/screen/home/passager_home_page.dart';
+import 'package:p_road/ui/screen/lists/lines_list_page.dart';
 
-import '../forms/clients_form_page.dart';
+import '../forms/passagers_form_page.dart';
+import '../lists/passager_list_page.dart';
+import '../lists/plans_list_page.dart';
+import '../lists/vehicle_list_page.dart';
 
 
 
@@ -28,24 +33,26 @@ class _Main_pageState extends State<Main_page> {
         title: const Text("P.Road"),
       ),
       drawer: Drawer(
-        backgroundColor: cardColor,
+        backgroundColor: mainColor,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             SafeArea(
               child: Card(
+                color: cardColor,
                 child: ListTile(
                   leading: CircleAvatar(
                     child: Icon(Icons.person),
                   ),
                   // title: Text('Username'),
                   title: Text(user.email!),
+                  subtitle: Text("Motorista"),
                   trailing: Icon(Icons.more),
                 ),
               ),
             ),
             SizedBox(
-              height: max(535, 535),
+              height: max(520, 520),
             ),
 
             ElevatedButton(
@@ -66,6 +73,33 @@ class _Main_pageState extends State<Main_page> {
       ),
       body: Column(
         children: [
+          Card(
+            color: cardColor,
+            margin: EdgeInsets.all(5),
+            child: ListTile(
+              title: Text('Passageiros Cadastrados',style: TextStyle(fontSize: 20)),
+              subtitle: Row(
+                children: [
+                  // Icon(Icons.location_pin,size: 15,),
+                  Text('2',style: TextStyle(fontSize: 40),),
+                ],
+              ),
+            ),
+          ),
+          Card(
+            color: cardColor,
+            margin: EdgeInsets.all(5),
+            child: ListTile(
+              title: Text('Total por Passageiro',style: TextStyle(fontSize: 20)),
+              subtitle: Row(
+                children: [
+                  // Icon(Icons.location_pin,size: 15,),
+                  Text('R\$ 350,00',style: TextStyle(fontSize: 40),),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(height: 350),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -79,7 +113,7 @@ class _Main_pageState extends State<Main_page> {
                             onPressed: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (context) => create_clients(),
+                                  builder: (context) => passagerListPage(),
                                 ),
                               );
                             },
@@ -91,6 +125,7 @@ class _Main_pageState extends State<Main_page> {
                     ),
                   ),
                 ),
+
                 InkWell(
                   child: Container(
                     child: InkWell(
@@ -100,7 +135,7 @@ class _Main_pageState extends State<Main_page> {
                             onPressed: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (context) => create_vehicles(),
+                                  builder: (context) => vehicleListPage(),
                                 ),
                               );
                             },
@@ -121,7 +156,7 @@ class _Main_pageState extends State<Main_page> {
                             onPressed: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (context) => create_plans(),
+                                  builder: (context) => plansListPage(),
                                 ),
                               );
                             },
@@ -142,7 +177,7 @@ class _Main_pageState extends State<Main_page> {
                             onPressed: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (context) => create_lines(),
+                                  builder: (context) => linesListPage(),
                                 ),
                               );
                             },

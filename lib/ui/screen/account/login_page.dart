@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:p_road/ui/screen/account/register_page.dart';
+import 'package:p_road/ui/screen/account/register_driver_page.dart';
+import 'package:p_road/ui/screen/account/register_passager_page.dart';
 
 
 import 'package:p_road/core/utils/constants.dart';
@@ -80,16 +81,38 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => create_view(),
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => driverCreatePage(),
+                        ),
+                      );
+                    },
+                    child: const Text("Criar Motorista"),
+
                   ),
-                );
-              },
-              child: const Text("Não possui uma conta ?"),
+                  Text('/'),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => create_view(),
+                        ),
+                      );
+                    },
+                    child: const Text("Criar Passageiro"),
+
+                  ),
+                ],
+
+              ),
             ),
+
             ElevatedButton(
               onPressed: () async {
                 await FirebaseAuth.instance
@@ -105,6 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       backgroundColor: cardColor,
                     ),
                   );
+
                 });
 
                 Navigator.of(context).push(
